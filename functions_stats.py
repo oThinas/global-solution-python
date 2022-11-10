@@ -1,25 +1,6 @@
-# Utils Functions
-import os, msvcrt, re
-
-""" 
-  * status: DONE
-
-  @description: Função que limpa o console
-"""
-def clearConsole():
-  os.system('cls' if os.name == 'nt' else 'clear')
-  
-""" 
-  * status: DONE
-  
-  @description: Função que verifica se a tecla pressionada foi ESC
-  @param keyPressed (string) - Tecla pressionada
-  @return (boolean) - True se a tecla pressionada foi ESC, False caso contrário
-"""
-def checkEscapeKey(keyPressed):
-  if keyPressed == b'\x1b': # ESC key
-    return True
-  return False
+import re
+from functions_utils import *
+from functions_mvp import initializeMvpMenu
 
 """ 
   * status: DONE
@@ -31,15 +12,6 @@ def listMonths(data):
   print('Meses de referência cadastrados:\n')
   for monthYearReference in data:
     print(monthYearReference)
-
-""" 
-  * status: DONE
-  
-  @description: Função que aguarda o usuário pressionar qualquer tecla para continuar
-"""
-def pressAnyKeyToContinue():
-  print('\nPressione qualquer tecla para continuar')
-  msvcrt.getch()
 
 """ 
   @description: Dicionário que armazena o mês-ano como chave e o valor como um dicionário com os dados numberOfInhabitants (total de habitantes) e numberOfDeaths (total de óbitos) do mês
@@ -73,9 +45,10 @@ data = {
   * status: DONE
   
   @description: Inicializa o Menu Principal. Deve ser chamado no início do programa e após a escolha do usuário, ser mandado para a função handleHomeMenu()
+  @return: userInput (string) - Opção escolhida pelo usuário
   @see: handleHomeMenu()
 """
-def initizalizeHomeMenu():
+def initializeHomeMenu():
   while True:
     clearConsole()
     print('________ Menu Principal ________')
@@ -93,23 +66,23 @@ def initizalizeHomeMenu():
     
 
 """
-  ? status: Should be tested
+  * status: DONE
 
-  @description: Trata o retorno do método initizalizeHomeMenu() e chama a opção que o usuário escolheu.
-  @see: initizalizeHomeMenu()
+  @description: Trata o retorno do método initializeHomeMenu() e chama a opção que o usuário escolheu.
+  @see: initializeHomeMenu()
 """
 def handleHomeMenu():
   while True:
     clearConsole()
-    userInput = initizalizeHomeMenu()
+    userInput = initializeHomeMenu()
     if userInput == '1':
-      registerMonth(data) # ? TEST
+      registerMonth(data) # * DONE
     elif userInput == '2':
-      showDataInMonth(data) # ? TEST
+      showDataInMonth(data) # * DONE
     elif userInput == '3':
-      compareMonths(data) # ? TEST
+      compareMonths(data) # * DONE
     elif userInput == '4':
-      listMonthsScreen(data) # ? TEST
+      listMonthsScreen(data) # * DONE
     elif userInput == '5':
       initializeMvpMenu() # TODO
     elif userInput == '6':
@@ -119,7 +92,7 @@ def handleHomeMenu():
       print('Opção inválida')
   
 """
-  ? status: Should be tested
+  * status: DONE
 
   @description: Insere um registro no dicionário de dados
   @params: data (dict) - Dicionário de dados
@@ -164,7 +137,7 @@ def registerMonth(data):
   return data
 
 """ 
-  ? status: Should be tested
+  * status: DONE
 
   @description: Função que exibe o os dados de referência de um mês-ano determinado pelo usuário
   @params: data (dict) - Dicionário de dados
@@ -193,7 +166,7 @@ def showDataInMonth(data):
     pressAnyKeyToContinue()
   
 """ 
-  ? status: Should be tested
+  * status: DONE
   
   @description: Função que exibe o os dados de referência de um mês-ano determinado pelo usuário
   @params: data (dict) - Dicionário de dados
@@ -247,7 +220,7 @@ def compareMonths(data):
     pressAnyKeyToContinue()
     
 """ 
-  ? status: Should be tested
+  * status: DONE
   
   @description: Função que monta a tela de listagem de meses cadastrados. Utiliza a função listMonths() para obter os meses cadastrados
   @params: data (dict) - Dicionário de dados
