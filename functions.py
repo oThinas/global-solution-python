@@ -56,7 +56,17 @@ def pressAnyKeyToContinue():
     }
   }
 """
-data = {}
+# data = {}
+data = {
+  "01-2020": {
+    "numberOfInhabitants": 1000,
+    "numberOfDeaths": 2
+  },
+  "02-2020": {
+    "numberOfInhabitants": 1000,
+    "numberOfDeaths": 2
+  }
+}
 
 
 """ 
@@ -177,9 +187,9 @@ def showDataInMonth(data):
         print('Mês não cadastrado')
     
     print('Registro encontrado')
-    print('Mês de referência: ', monthYearReference)
-    print('Total de habitantes: ', data[monthYearReference]['numberOfInhabitants'])
-    print('Total de óbitos: ', data[monthYearReference]['numberOfDeaths'])
+    print('Mês de referência:', monthYearReference)
+    print('Total de habitantes:', data[monthYearReference]['numberOfInhabitants'])
+    print('Total de óbitos:', data[monthYearReference]['numberOfDeaths'])
     pressAnyKeyToContinue()
   
 """ 
@@ -200,15 +210,20 @@ def compareMonths(data):
     print('-' * 50)
     
     while True:
-      monthYearReference = input('Digite o mês e ano de referência (MM-AAAA): ')
-      if monthYearReference in data:
-        break
-      elif len(monthYearReference) != 4 or not re.search('[0-9]+-[1-9][0-9]+', monthYearReference):
+      yearReference = input('Digite o ano de referência (AAAA): ')
+      if len(yearReference) != 4 or not re.search('[1-9][0-9]+', yearReference):
         print('Formato inválido. Valor correto (AAAA)')
       else:
-        print('Mês não cadastrado')
+        yearExists = False
+        for monthYearReference in data:
+          if monthYearReference[3:] == yearReference:
+            yearExists = True
+            break
+        if yearExists:
+          break
+        else:
+          print('Nenhum mês com esse ano foi cadastrado')
     
-    yearReference = monthYearReference[3:]
     sumOfInhabitantsInYear = 0
     sumOfDeathsInYear = 0
     for monthYearReference in data:
