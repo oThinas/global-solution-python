@@ -1,6 +1,5 @@
 # Utils Functions
-import os
-import msvcrt
+import os, msvcrt, re
 
 """ 
   * status: DONE
@@ -61,7 +60,7 @@ data = {}
 
 
 """ 
-  ? status: Should be tested
+  * status: DONE
   
   @description: Inicializa o Menu Principal. Deve ser chamado no início do programa e após a escolha do usuário, ser mandado para a função handleHomeMenu()
   @see: handleHomeMenu()
@@ -86,7 +85,7 @@ def initizalizeHomeMenu():
 """
   ? status: Should be tested
 
-  @description: Trata o retorno do método initizalizeHomeMenu() e chama a função que o usuário escolheu.
+  @description: Trata o retorno do método initizalizeHomeMenu() e chama a opção que o usuário escolheu.
   @see: initizalizeHomeMenu()
 """
 def handleHomeMenu():
@@ -126,7 +125,7 @@ def registerMonth(data):
       monthYearReference = input('Digite o mês e ano de referência (MM-AAAA): ')
       if monthYearReference in data:
         print('Mês já cadastrado')
-      elif len(monthYearReference) != 7:
+      elif len(monthYearReference) != 7 or not re.search('[0-9]+-[1-9][0-9]+', monthYearReference):
         print('Formato inválido. Valor correto (MM-AAAA)')
       else:
         break
@@ -172,7 +171,7 @@ def showDataInMonth(data):
       monthYearReference = input('\nDigite o mês e ano de referência (MM-AAAA): ')
       if monthYearReference in data:
         break
-      elif len(monthYearReference) != 7:
+      elif len(monthYearReference) != 7 or not re.search('[0-9]+-[1-9][0-9]+', monthYearReference):
         print('Formato inválido. Valor correto (MM-AAAA)')
       else:
         print('Mês não cadastrado')
@@ -204,8 +203,8 @@ def compareMonths(data):
       monthYearReference = input('Digite o mês e ano de referência (MM-AAAA): ')
       if monthYearReference in data:
         break
-      elif len(monthYearReference) != 7:
-        print('Formato inválido. Valor correto (MM-AAAA)')
+      elif len(monthYearReference) != 4 or not re.search('[0-9]+-[1-9][0-9]+', monthYearReference):
+        print('Formato inválido. Valor correto (AAAA)')
       else:
         print('Mês não cadastrado')
     
@@ -222,7 +221,7 @@ def compareMonths(data):
     if comparativeDeathTax > 100:
       comparativeDeathTax -= 100
     elif comparativeDeathTax < 100:
-      comparativeDeathTax = 100 - comparativeDeathTax
+      comparativeDeathTax -= 100
     
     print(f'Total de habitantes em {yearReference}: {sumOfInhabitantsInYear}')
     print(f'Total de óbitos em {yearReference}: {sumOfDeathsInYear}')
@@ -235,7 +234,7 @@ def compareMonths(data):
 """ 
   ? status: Should be tested
   
-  @description: Função que monta a tela de listagem de meses cadastrados. Utiliza a função listMonths para obter os meses cadastrados
+  @description: Função que monta a tela de listagem de meses cadastrados. Utiliza a função listMonths() para obter os meses cadastrados
   @params: data (dict) - Dicionário de dados
   @see: listMonths
 """
