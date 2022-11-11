@@ -127,8 +127,14 @@ def verifyValidEmail(user, email):
     print('Email não pode ser vazio. Tente novamente.\n')
   elif not any(email.endswith(suffix) for suffix in ['.com', '.com.br']):
     print('Email deve terminar com ".com" ou com ".com.br". Tente novamente.\n')
+  elif not email.count('.') == 1:
+    print('Email deve conter apenas um ponto. Tente novamente.\n')
   elif not email.count('@') == 1:
     print('Email deve conter um "@". Tente novamente.\n')
+  elif len(email.split('@')[0]) < 3:
+    print('Email deve conter no mínimo 3 caracteres antes do "@". Tente novamente.\n')
+  elif email[email.index('@') + 1:string.index('.')] == '':
+    print('Email deve conter no mínimo 1 caracteres entre o "@" e o ".". Tente novamente.\n')
   else:
     existEmailInAnotherUser = False
     for login in users:
