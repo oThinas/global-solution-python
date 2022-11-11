@@ -1,6 +1,6 @@
 import re
 from functions_utils import *
-from functions_mvp import initializeMvpMenu
+from functions_mvp import handleMvpMenu
 
 """ 
   * status: DONE
@@ -84,7 +84,7 @@ def handleHomeMenu():
     elif userInput == '4':
       listMonthsScreen(data) # * DONE
     elif userInput == '5':
-      initializeMvpMenu() # TODO
+      handleMvpMenu() # ? TEST
     elif userInput == '6':
       print('Saindo...') # * DONE
       break
