@@ -133,7 +133,7 @@ def verifyValidEmail(user, email):
     print('Email deve conter um "@". Tente novamente.\n')
   elif len(email.split('@')[0]) < 3:
     print('Email deve conter no mínimo 3 caracteres antes do "@". Tente novamente.\n')
-  elif email[email.index('@') + 1:string.index('.')] == '':
+  elif email[email.index('@') + 1:email.index('.')] == '':
     print('Email deve conter no mínimo 1 caracteres entre o "@" e o ".". Tente novamente.\n')
   else:
     existEmailInAnotherUser = False
