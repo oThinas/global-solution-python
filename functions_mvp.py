@@ -96,7 +96,7 @@ def verifyValidName(users, name):
   if findNumber(name):
     print('Nome não pode conter números. Tente novamente.\n')
   elif not name:
-    print('Nome não pode ser vazio. Tente novamente.')
+    print('Nome não pode ser vazio. Tente novamente.\n')
   elif not findCapitalInFistLetterOfEachWord(name):
     print('A primeira letra de cada nome/sobrenome deve ser maiúscula. Tente novamente.\n')
   elif len(name.split()) < 2:
@@ -225,7 +225,7 @@ def listBikePoints(points):
     for point in points:
       print(f'Endereço: {point}')
       print(f'Quantidade de bicicletas infantis: {points[point]["amountKidsBikes"]}')
-      print(f'Quantidade de bicicletas adultas: {points[point]["amountOfAdultsBikes"]}')
+      print(f'Quantidade de bicicletas adultas: {points[point]["amountAdultBikes"]}')
       print('-' * 50)
       print('\n')
 
@@ -258,11 +258,11 @@ users = {}
     users: {
       "Rua Clélia, 500": {
         "amountKidsBikes": 3,
-        "amountOfAdultsBikes": 2
+        "amountAdultsBikes": 2
       }
       "Avenida Paulista, 1000": {
         "amountKidsBikes": 0,
-        "amountOfAdultsBikes": 1
+        "amountAdultsBikes": 1
       }
     }
   }
