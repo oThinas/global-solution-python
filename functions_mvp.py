@@ -225,7 +225,7 @@ def listBikePoints(points):
     for point in points:
       print(f'Endereço: {point}')
       print(f'Quantidade de bicicletas infantis: {points[point]["amountKidsBikes"]}')
-      print(f'Quantidade de bicicletas adultas: {points[point]["amountAdultBikes"]}')
+      print(f'Quantidade de bicicletas adultas: {points[point]["amountAdultsBikes"]}')
       print('-' * 50)
       print('\n')
 
@@ -450,15 +450,15 @@ def createBikePoint(points, users, userSession):
           print('Valor inválido. Valor correto (número inteiro). Tente novamente.\n')
           
       while True:
-        amountAdultBikes = input('Digite o número de bikes tamanho adulto: ')
-        if amountAdultBikes.isnumeric():
+        amountAdultsBikes = input('Digite o número de bikes tamanho adulto: ')
+        if amountAdultsBikes.isnumeric():
           break
         else:
           print('Valor inválido. Valor correto (número inteiro). Tenten novamente.\n')
       
       points[address] = {
         "amountKidsBikes": amountKidsBikes,
-        "amountAdultBikes": amountAdultBikes
+        "amountAdultsBikes": amountAdultsBikes
       }
       userSession['amountOfPointsCreated'] += 1
       print('Ponto de bike cadastrado com sucesso!')
